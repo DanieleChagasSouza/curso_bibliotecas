@@ -1,5 +1,8 @@
 ﻿using bytebank.Modelos.Conta;
 using bytebank_ATENDIMENTO.bytebank.Exceptions;
+using Newtonsoft.Json;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace bytebank_ATENDIMENTO.bytebank.Atendimento
 {
@@ -19,7 +22,7 @@ namespace bytebank_ATENDIMENTO.bytebank.Atendimento
             try
             {
                 char opcao = '0';
-                while (opcao != '6')
+                while (opcao != '8')
                 {
                     Console.Clear();
                     Console.WriteLine("===============================");
@@ -29,7 +32,9 @@ namespace bytebank_ATENDIMENTO.bytebank.Atendimento
                     Console.WriteLine("===3 - Remover Conta        ===");
                     Console.WriteLine("===4 - Ordenar Contas       ===");
                     Console.WriteLine("===5 - Pesquisar Conta      ===");
-                    Console.WriteLine("===6 - Sair do Sistema      ===");
+                    Console.WriteLine("===6 - Exportar Contas      ===");
+                    Console.WriteLine("===7 - Exportar em XML      ===");
+                    Console.WriteLine("===8 - Sair do Sistema      ===");
                     Console.WriteLine("===============================");
                     Console.WriteLine("\n\n");
                     Console.Write("Digite a opção desejada: ");
@@ -60,6 +65,12 @@ namespace bytebank_ATENDIMENTO.bytebank.Atendimento
                             PesquisarContas();
                             break;
                         case '6':
+                            ExportarContas();
+                            break;
+                        case '7':
+                            ExportarEmXML();
+                            break;
+                        case '8':
                             EncerrarAplicacao();
                             break;
                         default:
@@ -72,6 +83,77 @@ namespace bytebank_ATENDIMENTO.bytebank.Atendimento
             {
                 Console.WriteLine($"{excecao.Message}");
             }
+        }
+
+        //private void ExportarEmXML()
+        //{
+        //    Console.Clear();
+        //    Console.WriteLine("===============================");
+        //    Console.WriteLine("===    EXPORTAR EM XML      ===");
+        //    Console.WriteLine("===============================");
+        //    Console.WriteLine("\n");
+        //    if (_listaDeContas.Count <= 0)
+        //    {
+        //        Console.WriteLine("... Não existe dados para exportação...");
+        //        Console.ReadKey();
+        //    }
+        //    else
+        //    {
+        //        var contasXML = new XmlSerializer(typeof(List<ContaCorrente>));
+
+        //        try
+        //        {
+        //            FileStream fs = new FileStream(@"C:\Users\DanieleChagasSouza\Desktop\Curso_Bibliotecas C#\curso_bibliotecas\tmp\contas.xml",
+        //                FileMode.Create);
+        //            using (StreamWriter streamwriter = new StreamWriter(fs))
+        //            {
+        //                contasXML.Serialize(streamwriter, _listaDeContas);
+        //            }
+        //            Console.WriteLine(@"Arquivo salvo em C:\Users\DanieleChagasSouza\Desktop\Curso_Bibliotecas C#\curso_bibliotecas\tmp");
+        //            Console.ReadKey();
+        //        }
+        //        catch (Exception excecao)
+        //        {
+        //            throw new ByteBankException(excecao.Message);
+        //            Console.ReadKey();
+        //        }
+
+        //    }
+        //}
+
+        private void ExportarContas()
+        {
+            Console.Clear();
+            Console.WriteLine("===============================");
+            Console.WriteLine("===    EXPORTAR CONTAS      ===");
+            Console.WriteLine("===============================");
+            Console.WriteLine("\n");
+
+            if (_listaDeContas.Count <= 0)
+            {
+                Console.WriteLine("... Não Existe dados para exportar! ...");
+                Console.ReadKey();
+            }
+            else
+            {
+                string json = JsonConvert.SerializeObject(_listaDeContas, Formatting.Indented);
+                try
+                {
+                    FileStream fs = new FileStream(@"C:\Users\DanieleChagasSouza\Desktop\Curso_Bibliotecas C#\curso_bibliotecas\tmp\contas.json",
+                   FileMode.Create);
+                    using (StreamWriter sw = new StreamWriter(fs)) {  sw.WriteLine(json); }
+
+                    Console.WriteLine(@"Arquivo salvo em C:\Users\DanieleChagasSouza\Desktop\Curso_Bibliotecas C#\curso_bibliotecas\tmp");
+                    Console.ReadKey();
+                }
+                catch( Exception ex)
+                {
+                    throw new ByteBankException(ex.Message);
+                    Console.ReadKey();
+
+                }
+            }
+
         }
 
         private void EncerrarAplicacao()

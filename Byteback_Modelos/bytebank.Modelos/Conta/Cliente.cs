@@ -2,11 +2,17 @@
 {
     public class Cliente
     {
+        public Cliente()
+        {
+            Cpf = string.Empty;
+            Nome = string.Empty;
+            Profissao = string.Empty;
+        }
 
-        public string Cpf { get; set; }
+        public string? Cpf { get; set; }
 
         private string _nome;
-        public string Nome
+        public string? Nome
         {
             get
             {
@@ -22,7 +28,7 @@
             }
         }
 
-        public string Profissao { get; set; }
+        public string? Profissao { get; set; }
 
         public static int TotalClientesCadastrados { get; set; }
 
