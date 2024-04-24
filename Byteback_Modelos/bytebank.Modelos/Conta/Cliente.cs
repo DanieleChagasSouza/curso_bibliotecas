@@ -2,12 +2,12 @@
 {
     public class Cliente
     {
-        public Cliente()
-        {
-            Cpf = string.Empty;
-            Nome = string.Empty;
-            Profissao = string.Empty;
-        }
+        //public Cliente()
+        //{
+        //    Cpf = string.Empty;
+        //    Nome = string.Empty;
+        //    Profissao = string.Empty;
+        //}
 
         public string? Cpf { get; set; }
 

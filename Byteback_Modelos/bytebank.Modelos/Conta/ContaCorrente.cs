@@ -143,10 +143,11 @@
 
         public static int TotalDeContasCriadas { get; set; }
 
-        public ContaCorrente()
+        private ContaCorrente()
         {
-           
+
         }
+
 
         public override string ToString()
         {

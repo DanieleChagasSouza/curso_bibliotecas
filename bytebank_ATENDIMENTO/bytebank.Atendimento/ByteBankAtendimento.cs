@@ -3,6 +3,7 @@ using bytebank_ATENDIMENTO.bytebank.Exceptions;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
+using System.Xml.Serialization;
 
 namespace bytebank_ATENDIMENTO.bytebank.Atendimento
 {
@@ -84,43 +85,6 @@ namespace bytebank_ATENDIMENTO.bytebank.Atendimento
                 Console.WriteLine($"{excecao.Message}");
             }
         }
-
-        //private void ExportarEmXML()
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine("===============================");
-        //    Console.WriteLine("===    EXPORTAR EM XML      ===");
-        //    Console.WriteLine("===============================");
-        //    Console.WriteLine("\n");
-        //    if (_listaDeContas.Count <= 0)
-        //    {
-        //        Console.WriteLine("... Não existe dados para exportação...");
-        //        Console.ReadKey();
-        //    }
-        //    else
-        //    {
-        //        var contasXML = new XmlSerializer(typeof(List<ContaCorrente>));
-
-        //        try
-        //        {
-        //            FileStream fs = new FileStream(@"C:\Users\DanieleChagasSouza\Desktop\Curso_Bibliotecas C#\curso_bibliotecas\tmp\contas.xml",
-        //                FileMode.Create);
-        //            using (StreamWriter streamwriter = new StreamWriter(fs))
-        //            {
-        //                contasXML.Serialize(streamwriter, _listaDeContas);
-        //            }
-        //            Console.WriteLine(@"Arquivo salvo em C:\Users\DanieleChagasSouza\Desktop\Curso_Bibliotecas C#\curso_bibliotecas\tmp");
-        //            Console.ReadKey();
-        //        }
-        //        catch (Exception excecao)
-        //        {
-        //            throw new ByteBankException(excecao.Message);
-        //            Console.ReadKey();
-        //        }
-
-        //    }
-        //}
-
         private void ExportarContas()
         {
             Console.Clear();
@@ -155,6 +119,43 @@ namespace bytebank_ATENDIMENTO.bytebank.Atendimento
             }
 
         }
+
+        private void ExportarEmXML()
+        {
+            Console.Clear();
+            Console.WriteLine("===============================");
+            Console.WriteLine("===    EXPORTAR EM XML      ===");
+            Console.WriteLine("===============================");
+            Console.WriteLine("\n");
+            if (_listaDeContas.Count <= 0)
+            {
+                Console.WriteLine("... Não existe dados para exportação...");
+                Console.ReadKey();
+            }
+            else
+            {
+                var contasXML = new XmlSerializer(typeof(List<ContaCorrente>));
+
+                try
+                {
+                    FileStream fs = new FileStream(@"C:\Users\DanieleChagasSouza\Desktop\Curso_Bibliotecas C#\curso_bibliotecas\tmp\contas.xml",
+                        FileMode.Create);
+                    using (StreamWriter streamwriter = new StreamWriter(fs))
+                    {
+                        contasXML.Serialize(streamwriter, _listaDeContas);
+                    }
+                    Console.WriteLine(@"Arquivo salvo em C:\Users\DanieleChagasSouza\Desktop\Curso_Bibliotecas C#\curso_bibliotecas\tmp");
+                    Console.ReadKey();
+                }
+                catch (Exception excecao)
+                {
+                    throw new ByteBankException(excecao.Message);
+                    Console.ReadKey();
+                }
+
+            }
+        }
+
 
         private void EncerrarAplicacao()
         {
