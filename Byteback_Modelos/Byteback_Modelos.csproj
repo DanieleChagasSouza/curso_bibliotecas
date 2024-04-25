@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="ByteBank_GeradorChavePix">
+      <HintPath>..\..\..\..\source\repos\ByteBank_GeradorChavePix\ByteBank_GeradorChavePix\bin\Debug\net8.0\ByteBank_GeradorChavePix.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
