@@ -10,6 +10,9 @@
     <Reference Include="ByteBank_GeradorChavePix">
       <HintPath>..\..\..\..\source\repos\ByteBank_GeradorChavePix\ByteBank_GeradorChavePix\bin\Debug\net8.0\ByteBank_GeradorChavePix.dll</HintPath>
     </Reference>
+    <Reference Include="ExportarDados">
+      <HintPath>..\..\..\..\source\repos\ExportarDados\ExportarDados\bin\Debug\net8.0\ExportarDados.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
